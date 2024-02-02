@@ -1,6 +1,8 @@
 package com.solvd.apitests;
 
-import com.solvd.apitests.api.GetProductsMethod;
+import com.solvd.apitests.api.dummyjson.GetProductsMethod;
+import com.solvd.apitests.api.dummyjson.PostProductsMethod;
+import com.zebrunner.carina.api.APIMethodPoller;
 import com.zebrunner.carina.api.apitools.validation.JsonCompareKeywords;
 import com.zebrunner.carina.core.IAbstractTest;
 import org.skyscreamer.jsonassert.JSONCompareMode;
@@ -9,6 +11,8 @@ import org.slf4j.LoggerFactory;
 import org.testng.annotations.Test;
 
 import java.lang.invoke.MethodHandles;
+import java.time.temporal.ChronoUnit;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class DummyjsonApiTest implements IAbstractTest {
     private static final Logger LOGGER = LoggerFactory.getLogger(MethodHandles.lookup().lookupClass());
@@ -19,5 +23,13 @@ public class DummyjsonApiTest implements IAbstractTest {
         getProductsMethod.callAPIExpectSuccess();
         getProductsMethod.validateResponse(JSONCompareMode.STRICT, JsonCompareKeywords.ARRAY_CONTAINS.getKey());
         getProductsMethod.validateResponseAgainstSchema("api/dummyjson/_get/rs.schema");
+    }
+
+    @Test
+    public void testCreateProducts() {
+        PostProductsMethod api = new PostProductsMethod();
+
+        api.callAPIExpectSuccess();
+        api.validateResponseAgainstSchema("api/dummyjson/_post/rs.schema");
     }
 }
