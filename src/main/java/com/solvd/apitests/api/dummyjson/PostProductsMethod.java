@@ -10,12 +10,10 @@ import com.zebrunner.carina.api.http.HttpResponseStatusType;
 import com.zebrunner.carina.utils.config.Configuration;
 
 @Endpoint(url="${base_url}/products/add", methodType = HttpMethodType.POST)
-@ResponseTemplatePath(path = "api/dummyjson/_post/rs.json")
 @RequestTemplatePath(path = "api/dummyjson/_post/rq.json")
 @SuccessfulHttpStatus(status = HttpResponseStatusType.OK_200)
 public class PostProductsMethod extends AbstractApiMethodV2 {
     public PostProductsMethod() {
-        super("api/dummyjson/_post/rq.json", "api/dummyjson/_post/rs.json");
         replaceUrlPlaceholder("base_url", Configuration.getRequired("api_url"));
     }
 }
