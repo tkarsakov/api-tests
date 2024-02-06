@@ -1,0 +1,8 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="selenium dynamic html test" parallel="methods">
+    <test name="selenium dynamic html test: boxes">
+        <classes>
+            <class name="com.solvd.apitests.SeleniumDynamicHtmlTest"/>
+        </classes>
+    </test>
+</suite>
